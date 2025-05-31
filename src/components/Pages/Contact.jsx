@@ -2,8 +2,8 @@ import React from 'react'
 
 function Contact() {
   return (
-    <div>
-        <h2>Contact</h2>
+    <div class="justify-content-center align-items-center mt-5 ">
+        <h2>Contacto</h2>
     </div>
   )
 }

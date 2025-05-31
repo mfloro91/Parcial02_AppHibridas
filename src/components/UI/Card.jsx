@@ -1,17 +1,18 @@
 import React from "react";
 import Button from "./Button";
 
-const Card = ({ title, description, image, cta }) => {
+const Card = ({ title, description, cta, children }) => {
   return (
     <div className="card" style={{
         width: "250px",
         fontSize: "0.95rem",
         padding: "12px",
-        boxSizing: "border-box"
+        boxSizing: "border-box",
+        margin: "0.5em",
       }}>
-      <img src={image} alt={title} className="card-image" />
+      {children}
       <div className="card-content">
-        <h2 className="card-title">{title}</h2>
+        <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
         <Button text={cta} variant="success"> </Button>
       </div>
