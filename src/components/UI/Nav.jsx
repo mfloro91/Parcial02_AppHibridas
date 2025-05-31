@@ -1,10 +1,23 @@
 import React from "react";
-import logo from '../assets/logo.png';
+//import logo from '../../assets/logo.png';
+import { Link, NavLink } from "react-router-dom";
 
-const Nav = () => {
+const Navbar = () => {
     return (
         <nav class="navbar">
 
+        <NavLink to="/"> Inicio </NavLink>
+        <NavLink to="/services"> Servicios </NavLink>
+        <NavLink to="/contact"> Contacto </NavLink>
+        <NavLink to="/login"> Iniciar sesión </NavLink>
+
+        </nav>
+    );
+}
+
+export default Navbar;
+
+/*
             <div class="nav-brand d-flex">
                 <img src={logo} alt="logoHotel" class="px-2"/>
                 <h1 class="fs-5 px-2">HotelAPI</h1>
@@ -32,9 +45,4 @@ const Nav = () => {
                     </a>
                 </li>
             </ul>
-
-        </nav>
-    );
-}
-
-export default Nav;
+            */

@@ -1,33 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import imgSpa from './assets/spa.jpg'
-import Button from './components/Button'
-import Text from './components/Text'
-import Card from './components/Card'
-import Nav from './components/Nav'
-import Hotel from './components/Hotel'
-import Form from './components/Form'
+
+import {Home, Services, Contact, Login} from './index.js';
+import {Button, Text, Card, Navbar, Hotel} from './components/UiComponents.js';
 
 function App() {
-  
+
 
   return (
     <>
 
-      <div>
-        <Nav />
-      </div>
-      
-      <Hotel hotel="Guajira" description="Vení a la Guajira, diversión y descanso." />
 
-      <Card
-        title="Spa"
-        description="Vení a hacerte masajes o a usar el sauna seco."
-        image={imgSpa}
-        cta="Reservar"
-      />
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/services" element={<Services/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/login" element={<Login/>} />
+      </Routes >
+
 
     </>
   )
