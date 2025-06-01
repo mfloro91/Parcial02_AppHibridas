@@ -14,7 +14,7 @@ const Card = ({ title, description, cta, children }) => {
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
-        <Button text={cta} variant="success"> </Button>
+        <Button text={cta} variant="success">  </Button>
       </div>
     </div>
   );

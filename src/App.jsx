@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
-import {Home, Services, Contact, Login} from './index.js';
+import {Home, Services, Contact, Login, NotFound, Profile} from './index.js';
 import {Button, Text, Card, Navbar, Hotel} from './components/UiComponents.js';
 
 function App() {
@@ -18,6 +18,8 @@ function App() {
         <Route path="/services" element={<Services/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/profile/:id" element={<Profile/>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes >
 
 
