@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-const Card = ({ title, description, cta, children }) => {
+const Card = ({ title, description, cta, onClick, children }) => {
   return (
     <div className="card" style={{
         width: "250px",
@@ -14,7 +14,7 @@ const Card = ({ title, description, cta, children }) => {
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
-        <Button text={cta} variant="success">  </Button>
+        <Button text={cta} variant="success" onClick={onClick}>  </Button>
       </div>
     </div>
   );

@@ -1,16 +1,44 @@
 import React from "react";
 //import logo from '../../assets/logo.png';
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+    const location = useLocation();
+
+    const [search, setSearch] = useState("");
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        alert(`Buscando: ${search}`);
+    };
+
     return (
         <nav>
 
-        <NavLink to="/"> Inicio </NavLink>
-        <NavLink to="/services"> Servicios </NavLink>
-        <NavLink to="/contact"> Contacto </NavLink>
-        <NavLink to="/login"> Iniciar sesión </NavLink>
+            <NavLink to="/"> Inicio </NavLink>
+            <NavLink to="/services"> Servicios </NavLink>
+            <NavLink to="/contact"> Contacto </NavLink>
 
+            {location.pathname === "/services" && (
+                <form onSubmit={handleSearchSubmit} style={{ display: "inline-block", margin: "0 10px" }}>
+                    <input
+                        type="text"
+                        placeholder="Buscar..."
+                        value={search}
+                        onChange={handleSearchChange}
+                        style={{ padding: "4px", borderRadius: "4px", border: "1px solid #ccc" }}
+                    />
+                    <button type="submit" style={{ padding: "4px 8px", background: "none", border: "none", cursor: "pointer" }}>
+                        <span role="img" aria-label="buscar" style={{ fontSize: "18px" }}>🔍</span>
+                    </button>
+                </form>
+            )}
+            <NavLink to="/login"> Iniciar sesión </NavLink>
         </nav>
     );
 }

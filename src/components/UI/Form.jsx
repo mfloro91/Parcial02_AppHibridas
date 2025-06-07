@@ -38,7 +38,7 @@ const Form = () => {
         label: "Contraseña",
         pattern: ".{6,}",
         required: true
-    },
+    },/*
     {
         id: 4,
         name: "confirmPassword",
@@ -48,14 +48,8 @@ const Form = () => {
         label: "Confirmar contraseña",
         pattern: formData.password,
         required: true
-    },
-    {
-        id: 5,
-        name: "message",
-        type: "text",
-        placeholder: "Mensaje (opcional)",
-        label: "Mensaje"
-    }];
+    },*/
+];
 
     const handleOnChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,7 +66,7 @@ const Form = () => {
 
             }
             
-            <button type="submit" className="btn btn-primary mt-3">Enviar</button>
+            <button type="submit" className="btn btn-primary mt-3">Iniciar sesión</button>
 
         </form>
     )
