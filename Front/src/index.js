@@ -4,3 +4,4 @@ export {default as Contact} from './components/Pages/Contact.jsx';
 export {default as Login} from './components/Pages/Login.jsx';
 export {default as NotFound} from './components/Pages/NotFound.jsx';
 export {default as Profile} from './components/Pages/Profile.jsx';
+export {default as Register} from './components/Pages/Register.jsx';
