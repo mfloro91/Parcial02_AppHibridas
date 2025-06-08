@@ -23,6 +23,7 @@ const Navbar = () => {
             <NavLink to="/"> Inicio </NavLink>
             <NavLink to="/services"> Servicios </NavLink>
             <NavLink to="/contact"> Contacto </NavLink>
+            <NavLink to="/paneladmin"> Admins </NavLink>
 
             {location.pathname === "/services" && (
                 <form onSubmit={handleSearchSubmit} style={{ display: "inline-block", margin: "0 10px" }}>

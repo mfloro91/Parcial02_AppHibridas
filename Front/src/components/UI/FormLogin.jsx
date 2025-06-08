@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+const FormLogin = () => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -69,5 +69,5 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default FormLogin;
 
