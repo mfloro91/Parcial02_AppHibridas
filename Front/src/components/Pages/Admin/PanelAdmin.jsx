@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card } from '../UiComponents.js'
+import { Button, Card } from '../../UiComponents.js'
 import { useNavigate } from 'react-router-dom'
 
 function PanelAdmin() {
