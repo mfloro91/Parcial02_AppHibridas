@@ -12,7 +12,7 @@ const Card = ({ title, description, cta, onClick, children }) => {
       }}>
       {children}
       <div className="card-content">
-        <h3 className="card-title">{title}</h3>
+        <h3 className="card-title fs-5 mt-3">{title}</h3>
         <p className="card-description">{description}</p>
         <Button text={cta} variant="success" onClick={onClick}>  </Button>
       </div>

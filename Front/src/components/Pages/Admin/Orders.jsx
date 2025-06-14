@@ -1,28 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import Card from '../../UI/Card.jsx'
-import Button from '../../UI/Button.jsx'
+import { Card } from '../../UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Orders() {
     const [orders, setOrders] = useState([])
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token || role !== "superadmin") {
+            navigate("/");
+            return;
+        }
+
+        fetchOrders(token);
+    }, []);
 
     // Enpoint: GET ALL ORDERS
 
-    const fetchOrders = async () => {
+    const fetchOrders = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/orders")
-            setOrders(res.data)
+            const res = await axios.get("http://localhost:3000/orders/all", {
+                headers: { Authorization: `Bearer ${token}` }
+            }); 
+
+            setOrders(res.data);
 
         } catch (err) {
             console.error(err)
         }
     }
-
-    useEffect(() => {
-        fetchOrders()
-    }, [])
-
 
     return (
         <div>
@@ -32,10 +42,10 @@ function Orders() {
             {orders.map((order) => (
                 <Card
                     key={order._id}
-                    title={order.name}
+                    title={order._service_id}
                     description={order.status}
                     cta="Ver más"
-                    onClick={() => navigate(`/order/${order.id}`)}
+                    onClick={() => navigate(`/order/${order._id}`)}
                 />
             ))}
 

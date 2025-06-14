@@ -25,7 +25,14 @@ const FormLogin = () => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("role", response.data.role);
 
-                navigate("/services");
+                const role = localStorage.getItem("role");
+
+                if (role === "superadmin" || role === "admin" || role === "staff") {
+                    navigate("/paneladmin");
+                } else {
+                    navigate("/");
+                }
+
             }
 
         } catch (error) {

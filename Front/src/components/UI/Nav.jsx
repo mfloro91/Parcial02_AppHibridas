@@ -1,15 +1,24 @@
 import React from "react";
+import { Button } from "../UiComponents";
 //import logo from '../../assets/logo.png';
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate} from "react-router-dom";
 import { useState } from "react";
 
 const Navbar = () => {
     const location = useLocation();
-
     const [search, setSearch] = useState("");
+    const role = localStorage.getItem("role");
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        navigate("/login");
     };
 
     const handleSearchSubmit = (e) => {
@@ -23,9 +32,12 @@ const Navbar = () => {
             <NavLink to="/"> Inicio </NavLink>
             <NavLink to="/services"> Servicios </NavLink>
             <NavLink to="/contact"> Contacto </NavLink>
-            <NavLink to="/paneladmin"> Admins </NavLink>
 
-            {location.pathname === "/services" && (
+            {(role === "superadmin" || role === "admin" || role === "staff") && (
+                <NavLink to="/paneladmin"> Panel Admin </NavLink>
+            )}
+
+            {location.pathname === "/hotels" && (
                 <form onSubmit={handleSearchSubmit} style={{ display: "inline-block", margin: "0 10px" }}>
                     <input
                         type="text"
@@ -39,7 +51,13 @@ const Navbar = () => {
                     </button>
                 </form>
             )}
-            <NavLink to="/login"> Iniciar sesión </NavLink>
+
+            {token ? (
+                <Button text="Cerrar sesión" variant="success" onClick={handleLogout}> </Button>
+            ) : (
+                <NavLink to="/login"> Iniciar sesión </NavLink>
+            )}
+
         </nav>
     );
 }

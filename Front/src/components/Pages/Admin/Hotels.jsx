@@ -1,33 +1,42 @@
 import React, { useState, useEffect } from 'react'
-import Card from '../../UI/Card.jsx'
-import Button from '../../UI/Button.jsx'
+import { Card, Button } from '../../UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Hotels() {
+
+    const [hotels, setHotels] = useState([])
 
     const navigate = useNavigate()
     const goCreateHotel = () => {
         navigate('/createhotel')
     }
 
-    const [hotels, setHotels] = useState([])
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token || role !== "superadmin") {
+            navigate("/");
+            return;
+        }
+
+        fetchHotels(token);
+    }, []);
 
     // Enpoint: GET HOTELS ALL
-    const fetchHotels = async () => {
+    const fetchHotels = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/hotels")
-            setHotels(res.data)
+            const res = await axios.get("http://localhost:3000/hotels", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            setHotels(res.data);
 
         } catch (err) {
             console.error(err)
         }
     }
-
-    useEffect(() => {
-        fetchHotels()
-    }, [])
-
 
     return (
         <div>
@@ -40,7 +49,7 @@ function Hotels() {
                     title={hotel.name}
                     description={`${hotel.city}, ${hotel.country}`}
                     cta="Ver más"
-                    onClick={() => navigate(`/hotel/${hotel.id}`)}
+                    onClick={() => navigate(`/hotel/${hotel._id}`)}
                 />
             ))}
 

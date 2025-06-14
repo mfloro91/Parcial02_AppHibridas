@@ -17,7 +17,7 @@ function Home() {
 
             <Hotel hotel="Guajira" description="Vení a la Guajira, diversión y descanso." />
 
-            <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+            <div className="d-flex flex-wrap justify-content-center align-items-center mt-5">
 
                 <Card
                     title="Servicios"

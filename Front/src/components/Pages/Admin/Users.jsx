@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Card, Button} from '../../UiComponents'
+import {Card} from '../../UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -11,9 +11,8 @@ function Users() {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
 
-        // Si no hay token o el usuario no es admin, redirigir
         if (!token || role !== "superadmin") {
-            navigate("/"); // Redirigir a la página de inicio o de acceso denegado
+            navigate("/"); 
             return;
         }
 
@@ -45,6 +44,7 @@ function Users() {
                     title={user.name}
                     description={user.email}
                     cta="Ver más"
+                    onClick={() => navigate(`/users/${user._id}`)}
                 />
             ))}
 
