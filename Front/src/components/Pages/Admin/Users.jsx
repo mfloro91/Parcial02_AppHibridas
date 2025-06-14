@@ -5,22 +5,34 @@ import axios from 'axios'
 
 function Users() {
     const [users, setUsers] = useState([])
-
-    // Enpoint: GET ALL USERS 
-    const fetchUsers = async () => {
-        try {
-            const res = await axios.get("http://localhost:3000/users/all")
-            setUsers(res.data)
-
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetchUsers()
-    }, [])
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
 
+        // Si no hay token o el usuario no es admin, redirigir
+        if (!token || role !== "superadmin") {
+            navigate("/"); // Redirigir a la página de inicio o de acceso denegado
+            return;
+        }
+
+        fetchUsers(token);
+    }, []);
+
+
+    // Endpoint: GET ALL USERS con autenticación
+    const fetchUsers = async (token) => {
+        try {
+            const res = await axios.get("http://localhost:3000/users", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            setUsers(res.data);
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div>
@@ -31,9 +43,8 @@ function Users() {
                 <Card
                     key={user._id}
                     title={user.name}
-                    description={user.status}
+                    description={user.email}
                     cta="Ver más"
-                    onClick={() => navigate(`/user/${user.id}`)}
                 />
             ))}
 
