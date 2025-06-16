@@ -7,13 +7,22 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"
 import path from "path"
 import { fileURLToPath } from "url"
+import cors from "cors"
 
 dotenv.config();
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log("Conexión a Mongo exitosa"))
 .catch((err) => console.log("Error al conectar con Mongo", err));
 
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization', 
+};
+
 const app = express();
+app.use(cors());
+
 const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

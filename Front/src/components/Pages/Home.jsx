@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Hotel } from '../UiComponents.js'
+import { Card, Hotel } from '../routes/UiComponents.js'
 import { useNavigate } from 'react-router-dom'
 
 function Home() {

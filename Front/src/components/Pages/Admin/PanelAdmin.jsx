@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card } from '../../UiComponents.js'
+import { Button, Card } from '../../routes/UiComponents.js'
 import { useNavigate } from 'react-router-dom'
 
 function PanelAdmin() {
@@ -25,7 +25,7 @@ function PanelAdmin() {
             <h2> Panel de administración </h2>
 
 
-            <div class="d-flex flex-wrap justify-content-center align-items-center mt-5">
+            <div className="d-flex flex-wrap justify-content-center align-items-center mt-5">
 
                 <Card
                     title="Administrar hoteles"

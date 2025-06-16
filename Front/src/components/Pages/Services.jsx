@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card } from '../UiComponents.js'
+import { Card } from '../routes/UiComponents'
 import imgSpa from '../../assets/spa.jpg'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'

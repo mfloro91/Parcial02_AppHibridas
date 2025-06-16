@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
-import {Home, Services, Contact, Login, NotFound, Profile, Register, Hotels, Users, Orders, PanelAdmin, CreateHotel} from './index.js';
-import {Button, Text, Card, Navbar, Hotel} from './components/UiComponents.js';
+import Nav from './components/UI/Nav.jsx'
+import {Home, Services, Contact, Login, NotFound, Profile, Register, Users, Orders, PanelAdmin} from './index.js';
+import HotelRoutes from './components/routes/HotelRoutes.jsx';
+
 
 function App() {
 
@@ -12,7 +14,7 @@ function App() {
     <>
 
 
-      <Navbar/>
+      <Nav/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/services" element={<Services/>} />
@@ -20,11 +22,10 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/profile/:id" element={<Profile/>} />
-        <Route path="/hotels" element={<Hotels/>} />
+        <Route path="/hotels/*" element={<HotelRoutes />} />
         <Route path="/users" element={<Users/>} />
         <Route path="/orders" element={<Orders/>} />
         <Route path="/paneladmin" element={<PanelAdmin/>} />
-        <Route path="/createhotel" element={<CreateHotel/>} />
         <Route path="*" element={<NotFound/>} />
       </Routes >
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, Button } from '../../UiComponents'
+import { Card, Button } from '../../routes/UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -9,7 +9,7 @@ function Hotels() {
 
     const navigate = useNavigate()
     const goCreateHotel = () => {
-        navigate('/createhotel')
+        navigate('/hotels/createhotel')
     }
 
     useEffect(() => {

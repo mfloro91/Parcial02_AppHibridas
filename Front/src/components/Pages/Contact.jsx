@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../UiComponents'
+import { Button } from '../routes/UiComponents'
 import { useNavigate } from 'react-router-dom'
 
 function Contact() {
@@ -9,7 +9,7 @@ function Contact() {
   }
 
   return (
-    <div class="justify-content-center align-items-center mt-5 ">
+    <div className="justify-content-center align-items-center mt-5 ">
       <h2>Contacto</h2>
       <p>Si tienes alguna pregunta o necesitas más información, no dudes en contactarnos.</p>
       <Button text="Llamar a recepción" variant="success"> </Button>
