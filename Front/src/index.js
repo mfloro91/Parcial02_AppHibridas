@@ -5,9 +5,20 @@ export {default as Login} from './components/Pages/Login.jsx';
 export {default as NotFound} from './components/Pages/NotFound.jsx';
 export {default as Profile} from './components/Pages/Profile.jsx';
 export {default as Register} from './components/Pages/Register.jsx';
-export {default as Hotels} from './components/Pages/Admin/Hotels.jsx';
-export {default as PanelAdmin} from './components/Pages/Admin/PanelAdmin.jsx';
-export {default as CreateHotel} from './components/Pages/Admin/CreateHotel.jsx';
+
+
+
 export {default as Orders} from './components/Pages/Admin/Orders.jsx';
 export {default as Users} from './components/Pages/Admin/Users.jsx';
+
+// PANEL ADMIN - solo se habilita en el nav si tenes rol Admin, Superadmin o Staff
+
+export {default as PanelAdmin} from './components/Pages/Admin/PanelAdmin.jsx';
+
+//CRUD hoteles
+
+export {default as Hotels} from './components/Pages/Admin/Hotels.jsx';
+export {default as CreateHotel} from './components/Pages/Admin/CreateHotel.jsx';
+export {default as HotelById} from './components/Pages/Admin/HotelById.jsx';
+export {default as EditHotel} from './components/Pages/Admin/EditHotel.jsx';
 

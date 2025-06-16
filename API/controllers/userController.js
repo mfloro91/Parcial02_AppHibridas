@@ -77,7 +77,7 @@ export async function loginUser (req, res) {
         {expiresIn: '30min'}
     )
 
-    res.status(200).json({token, role: user.role})
+    res.status(200).json({token, role: user.role, hotel_id: user.hotel_id, name: user.name});
 
     } catch (err) {
         res.status(500).json({error: err.message});

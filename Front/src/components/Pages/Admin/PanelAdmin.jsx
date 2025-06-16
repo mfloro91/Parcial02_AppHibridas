@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 function PanelAdmin() {
 
     const navigate = useNavigate()
+    const userRole = localStorage.getItem("role");
+    const hotelId = localStorage.getItem("hotelId");
 
     const goToServices = () => {
         navigate('/services')
@@ -14,8 +16,13 @@ function PanelAdmin() {
     }
 
     const goToHotels = () => {
-        navigate('/hotels')
-    }
+        if (userRole === "admin") {
+            navigate(`/hotels/${hotelId}`);
+        } else if (userRole === "superadmin") {
+            navigate("/hotels");
+        }
+    };
+
     const goToUsers = () => {
         navigate('/users')
     }

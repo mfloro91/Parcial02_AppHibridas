@@ -3,49 +3,21 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const FormHotel = () => {
+const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState(initialData || {
         name: "",
         logo: "",
         description: "",
         languages: [],
         country: "",
         city: "",
+
     });
 
-    const navigate = useNavigate();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const newHotel = {
-            name: formData.name,
-            logo: formData.logo,
-            description: formData.description,
-            languages: formData.languages.split(",").map(lang => lang.trim()),
-            country: formData.country,
-            city: formData.city,
-        }
-        try {
-            await axios.post("http://localhost:3000/hotels", newHotel);
-            setFormData({
-                name: "",
-                logo: "",
-                description: "",
-                languages: [],
-                country: "",
-                city: "",
-            });
-
-            navigate("/hotels");
-
-
-        } catch (error) {
-            console.error(error);
-        }
+    const handleOnChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-
-
     const inputs = [
         {
             id: 1,
@@ -98,12 +70,8 @@ const FormHotel = () => {
         }
     ];
 
-    const handleOnChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
-
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e, formData)}>
 
             {inputs.map((input) => (
                 <FormInput key={input.id} value={formData[input.name]} handleOnChange={handleOnChange} {...input} />
@@ -111,7 +79,10 @@ const FormHotel = () => {
 
             }
 
-            <button type="submit" className="btn btn-primary mt-3">Crear hotel</button>
+            <button type="submit" className="btn btn-primary mt-3">
+                {isEditing ? "Editar hotel" : "Crear hotel"}
+            </button>
+
 
         </form>
     )

@@ -49,7 +49,7 @@ function Hotels() {
                     title={hotel.name}
                     description={`${hotel.city}, ${hotel.country}`}
                     cta="Ver más"
-                    onClick={() => navigate(`/hotel/${hotel._id}`)}
+                    onClick={() => navigate(`/hotels/${hotel._id}`)}
                 />
             ))}
 
