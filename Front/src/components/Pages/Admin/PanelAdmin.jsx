@@ -41,16 +41,19 @@ function PanelAdmin() {
                     onClick={goToHotels}
                 />
 
-                <Card
-                    title="Administrar usuarios"
-                    description="Visualizar o editar usuarios."
-                    cta="Empezar"
-                    onClick={goToUsers}
-                />
+                {userRole === "superadmin" && (
+                    <Card
+                        title="Administrar usuarios"
+                        description="Visualizar o editar los usuarios creados."
+                        cta="Empezar"
+                        onClick={goToUsers}
+                    />
+                )}
+
 
                 <Card
                     title="Administrar órdenes"
-                    description="Visualizar o editar órdenes."
+                    description="Visualizar o editar órdenes creadas."
                     cta="Empezar"
                     onClick={goToOrders}
                 />

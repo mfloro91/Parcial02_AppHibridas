@@ -43,17 +43,20 @@ function Hotels() {
             <h2>Hoteles</h2>
             <p>Estos son algunos de los hoteles que están usando nuestra app.</p>
 
-            {hotels.map((hotel) => (
-                <Card
-                    key={hotel._id}
-                    title={hotel.name}
-                    description={`${hotel.city}, ${hotel.country}`}
-                    cta="Ver más"
-                    onClick={() => navigate(`/hotels/${hotel._id}`)}
-                />
-            ))}
-
             <Button text="Crear nuevo hotel" variant="success" onClick={goCreateHotel}> </Button>
+
+            <div className="d-flex flex-wrap justify-content-center align-items-center mt-3">
+                {hotels.map((hotel) => (
+                    <Card
+                        key={hotel._id}
+                        title={hotel.name}
+                        description={`${hotel.city}, ${hotel.country}`}
+                        cta="Ver más"
+                        onClick={() => navigate(`/hotels/${hotel._id}`)}
+                    />
+                ))}
+
+            </div>
 
         </div>
     )

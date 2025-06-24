@@ -40,7 +40,7 @@ function EditHotel() {
             });
 
             alert("Hotel actualizado correctamente.");
-            navigate("/hotels");
+            navigate('/hotels/' + id); 
             
         } catch (err) {
             alert("Hubo un error al actualizar el hotel.");

@@ -7,13 +7,13 @@ const router = express.Router();
 // Endpoints para hoteles
 
 // Lista todos los hoteles (solo para superadmin)
-router.get('/', authenticateJWT, authorizeRoles('superadmin'), getAllHotels)
+router.get('/', getAllHotels)
 
 // Buscar hotel por ciudad (solo para superadmin)
 router.get('/search', authenticateJWT, authorizeRoles('superadmin'), searchAllHotelsByUbication)
 
 // Ver detalle de un hotel por ID (solo para superadmin)
-router.get('/:id', authenticateJWT, authorizeRoles('superadmin'), getAllHotelsById)
+router.get('/:id', authenticateJWT, getAllHotelsById)
 
 // Crear info relativa a un nuevo hotel (solo para superadmins)
 router.post('/', authenticateJWT, authorizeRoles('superadmin'), addHotel);

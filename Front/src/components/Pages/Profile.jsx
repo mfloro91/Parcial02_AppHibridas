@@ -1,12 +1,15 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
 const Profile = () => {
-    const {id} = useParams();
+    const role = localStorage.getItem("role");
+    const name = localStorage.getItem("name");
+    const hotelName = localStorage.getItem("hotelName");
 
   return (
     <div>
-        <h2>¡Hola {id}! </h2>
+        <h2>¡Hola {name}! </h2>
+        <p>Tu rol es: {role}</p>
+        <p>Actualmente te estás hospedando en el hotel: {hotelName} </p>
     </div>
   )
 }

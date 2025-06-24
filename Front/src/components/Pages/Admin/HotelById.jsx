@@ -23,7 +23,7 @@ function HotelById() {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
 
-        if (!token || role !== "superadmin" || role !== "admin") {
+        if (!token || (role !== "superadmin" && role !== "admin")) {
             navigate("/");
             return;
         }
@@ -83,7 +83,12 @@ function HotelById() {
 
             <Button text="Volver a hoteles" variant="success" onClick={goToHotels}>  </Button>
             <Button text="Editar hotel" variant="warning" onClick={() => navigate(`/hotels/edithotel/${id}`)}>  </Button>
-            <Button text="Eliminar hotel" variant="danger" onClick={handleDelete}>  </Button>
+
+
+            {localStorage.getItem("role") === "superadmin" && (
+                <Button text="Eliminar hotel" variant="danger" onClick={handleDelete}>  </Button>
+            )}
+
 
 
         </div>

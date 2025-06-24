@@ -9,7 +9,7 @@ function Contact() {
   }
 
   return (
-    <div className="justify-content-center align-items-center mt-5 ">
+    <div className="justify-content-center align-items-center mt-3 ">
       <h2>Contacto</h2>
       <p>Si tienes alguna pregunta o necesitas más información, no dudes en contactarnos.</p>
       <Button text="Llamar a recepción" variant="success"> </Button>

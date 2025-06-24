@@ -1,23 +1,71 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Card, Hotel } from '../routes/UiComponents.js'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Home() {
+    const [hotel, setHotel] = useState(null);
+    const token = localStorage.getItem("token");
+    const hotelId = localStorage.getItem("hotelId");
 
     const navigate = useNavigate()
     const goToServices = () => {
         navigate('/services')
     }
-    const goToLogin = () => {
-        navigate('/login')  
+
+    const handleProfileClick = () => {
+        const userId = localStorage.getItem("userId");
+
+        if (token && userId) {
+            navigate(`/profile/${userId}`);
+        } else {
+            navigate('/login');
+        }
+
     }
 
+
+    useEffect(() => {
+
+        if (token && hotelId) {
+            const fetchHotel = async () => {
+                try {
+                    const res = await axios.get(`http://localhost:3000/hotels/${hotelId}`, {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+
+                    setHotel(res.data);
+
+                } catch (err) {
+                    console.error(err)
+                }
+            }
+
+            fetchHotel();
+        }
+    }, []);
+
+    const hotelProps = token && hotel ?
+        {
+            hotel: hotel.name,
+            description: hotel.description
+
+        } : {
+            hotel: "HotelApp",
+            description: "Una aplicación para gestionar tu estadía en el hotel"
+        };
+
     return (
+
         <div>
 
-            <Hotel hotel="Guajira" description="Vení a la Guajira, diversión y descanso." />
+            {!token || hotel ? (
+                <Hotel {...hotelProps} />
+            ) : (
+                <p>Cargando información del hotel...</p>
+            )}
 
-            <div className="d-flex flex-wrap justify-content-center align-items-center mt-5">
+            <div className="d-flex flex-wrap justify-content-center align-items-center mt-3">
 
                 <Card
                     title="Servicios"
@@ -27,10 +75,10 @@ function Home() {
                 />
 
                 <Card
-                    title="Mi estadía"
+                    title="Mi perfil"
                     description="Conocer los detalles de mi estadía."
-                    cta="Login"
-                    onClick={goToLogin}
+                    cta={token ? "Ir al perfil" : "Login"}
+                    onClick={handleProfileClick}
                 />
 
             </div>

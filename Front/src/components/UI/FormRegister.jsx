@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -12,9 +12,23 @@ const FormRegister = () => {
         email: "",
         password: "",
     });
-    
+
+    const [hotels, setHotels] = useState([]);
+
+    useEffect(() => {
+        const fetchHotels = async () => {
+            try {
+                const response = await axios.get("http://localhost:3000/hotels");
+                setHotels(response.data);
+            } catch (error) {
+                console.error("Error accediendo a hoteles", error);
+            }
+        };
+        fetchHotels();
+    }, []);
+
     const navigate = useNavigate();
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newUser = {
@@ -33,11 +47,13 @@ const FormRegister = () => {
                 email: "",
                 password: "",
             });
-        
+
+            alert("Usuario creado correctamente.");
             navigate("/login");
 
 
         } catch (error) {
+            alert("No se ha creado el usuario.");
             console.error(error);
         }
     }
@@ -46,14 +62,6 @@ const FormRegister = () => {
     const inputs = [
         {
             id: 1,
-            name: "hotel_id",
-            type: "text",
-            placeholder: "ID del hotel",
-            label: "ID del hotel",
-            required: true
-        },
-        {
-            id: 2,
             name: "name",
             type: "text",
             placeholder: "Nombre",
@@ -63,7 +71,7 @@ const FormRegister = () => {
             required: true
         },
         {
-            id: 3,
+            id: 2,
             name: "userName",
             type: "text",
             placeholder: "Nombre de usuario",
@@ -71,7 +79,7 @@ const FormRegister = () => {
             required: true
         },
         {
-            id: 4,
+            id: 3,
             name: "email",
             type: "email",
             placeholder: "Correo electrónico",
@@ -80,7 +88,7 @@ const FormRegister = () => {
             required: true
         },
         {
-            id: 5,
+            id: 4,
             name: "password",
             type: "password",
             placeholder: "Contraseña",
@@ -103,6 +111,22 @@ const FormRegister = () => {
             ))
 
             }
+
+            <label className="form-label mt-2">¿En qué hotel te estás hospedando?</label>
+            <select
+                name="hotel_id"
+                className="form-select"
+                value={formData.hotel_id}
+                onChange={handleOnChange}
+                required
+            >
+                <option value="">Seleccioná un hotel</option>
+                {hotels.map((hotel) => (
+                    <option key={hotel._id} value={hotel._id}>
+                        {hotel.name}
+                    </option>
+                ))}
+            </select>
 
             <button type="submit" className="btn btn-primary mt-3">Crear usuario</button>
 

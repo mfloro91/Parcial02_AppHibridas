@@ -30,3 +30,16 @@ input[focused="true"]:invalid {
 input[focused="true"]:invalid ~ span {
   display: block;
 }
+
+nav {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: white; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+

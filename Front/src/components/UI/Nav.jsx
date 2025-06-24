@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../routes/UiComponents";
 //import logo from '../../assets/logo.png';
-import { NavLink, useLocation, useNavigate} from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
     const [search, setSearch] = useState("");
     const role = localStorage.getItem("role");
     const token = localStorage.getItem("token");
+    const name = localStorage.getItem("name");
     const navigate = useNavigate();
 
     const handleSearchChange = (e) => {
@@ -27,33 +28,37 @@ const Navbar = () => {
     };
 
     return (
-        <nav>
+        <nav className="d-flex justify-content-between align-items-center p-3">
 
-            <NavLink to="/"> Inicio </NavLink>
-            <NavLink to="/services"> Servicios </NavLink>
-            <NavLink to="/contact"> Contacto </NavLink>
+            <NavLink to="/" className="align-items-center p-3"> Inicio </NavLink>
+            <NavLink to="/services" className="align-items-center p-3"> Servicios </NavLink>
+            <NavLink to="/contact" className="align-items-center p-3"> Contacto </NavLink>
 
             {(role === "superadmin" || role === "admin" || role === "staff") && (
-                <NavLink to="/paneladmin"> Panel Admin </NavLink>
+                <NavLink to="/paneladmin" className="align-items-center p-3"> Panel Admin </NavLink>
             )}
 
             {location.pathname === "/hotels" && (
-                <form onSubmit={handleSearchSubmit} style={{ display: "inline-block", margin: "0 10px" }}>
+                <form onSubmit={handleSearchSubmit} className="d-flex align-items-center p-3">
                     <input
                         type="text"
                         placeholder="Buscar..."
                         value={search}
                         onChange={handleSearchChange}
-                        style={{ padding: "4px", borderRadius: "4px", border: "1px solid #ccc" }}
+                        className="form-control me-2"
                     />
-                    <button type="submit" style={{ padding: "4px 8px", background: "none", border: "none", cursor: "pointer" }}>
-                        <span role="img" aria-label="buscar" style={{ fontSize: "18px" }}>🔍</span>
+                    <button type="submit" className="btn btn-light">
+                        <span className="material-icons">search</span>
                     </button>
                 </form>
+
             )}
 
             {token ? (
-                <Button text="Cerrar sesión" variant="success" onClick={handleLogout}> </Button>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <p style={{ margin: "0", fontWeight: "bold" }}>{name}</p>
+                    <Button text="Cerrar sesión" variant="success" onClick={handleLogout}> </Button>
+                </div>
             ) : (
                 <NavLink to="/login"> Iniciar sesión </NavLink>
             )}

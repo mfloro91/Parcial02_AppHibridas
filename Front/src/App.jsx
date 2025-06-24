@@ -3,8 +3,10 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import Nav from './components/UI/Nav.jsx'
-import {Home, Services, Contact, Login, NotFound, Profile, Register, Users, Orders, PanelAdmin} from './index.js';
+import { Home, Contact, Login, NotFound, Profile, Register, Users, Orders, PanelAdmin } from './index.js';
 import HotelRoutes from './components/routes/HotelRoutes.jsx';
+import ServiceRoutes from './components/routes/ServicesRoutes.jsx';
+
 
 
 function App() {
@@ -14,19 +16,23 @@ function App() {
     <>
 
 
-      <Nav/>
+      <Nav />
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/services" element={<Services/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/profile/:id" element={<Profile/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+
+        <Route path="/paneladmin" element={<PanelAdmin />} />
+        <Route path="/services/*" element={<ServiceRoutes />} />
         <Route path="/hotels/*" element={<HotelRoutes />} />
-        <Route path="/users" element={<Users/>} />
-        <Route path="/orders" element={<Orders/>} />
-        <Route path="/paneladmin" element={<PanelAdmin/>} />
-        <Route path="*" element={<NotFound/>} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/users" element={<Users />} />
+        
+        <Route path="/orders" element={<Orders />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes >
 
 

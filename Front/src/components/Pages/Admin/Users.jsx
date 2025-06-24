@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Card} from '../../routes/UiComponents'
+import { Card } from '../../routes/UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -12,7 +12,7 @@ function Users() {
         const role = localStorage.getItem("role");
 
         if (!token || role !== "superadmin") {
-            navigate("/"); 
+            navigate("/");
             return;
         }
 
@@ -33,20 +33,54 @@ function Users() {
         }
     };
 
+    // Función para actualizar el rol del usuario
+    const updateUserRole = async (id, newRole) => {
+        const token = localStorage.getItem("token");
+
+        try {
+            await axios.patch(`http://localhost:3000/users/${id}`, { role: newRole }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
+            alert("Rol actualizado correctamente");
+            fetchUsers(token);
+
+        } catch (error) {
+            console.error("Error al actualizar el rol:", error.response?.data || error.message);
+            alert("Hubo un error al actualizar el rol.");
+        }
+    };
+
+
+
     return (
         <div>
             <h2>Usuarios</h2>
             <p>Estos son los usuarios que tienen cuenta en la app.</p>
 
-            {users.map((user) => (
-                <Card
-                    key={user._id}
-                    title={user.name}
-                    description={user.email}
-                    cta="Ver más"
-                    onClick={() => navigate(`/users/${user._id}`)}
-                />
-            ))}
+            <div className="d-flex flex-wrap justify-content-center align-items-center mt-3">
+                {users.map((user) => (
+                    <Card
+                        key={user._id}
+                        title={user.name}
+                        description={user.email}
+                        cta="Editar rol"
+                    >
+                        <p>Rol:</p>
+
+                        <select
+                            value={user.role}
+                            onChange={(e) => updateUserRole(user._id, e.target.value)}
+                        >
+                            <option value="user">Usuario</option>
+                            <option value="staff">Staff</option>
+                            <option value="admin">Admin</option>
+                            <option value="superadmin">Superadmin</option>
+                        </select>
+                        </Card>
+                ))}
+
+            </div>
 
         </div>
     )
