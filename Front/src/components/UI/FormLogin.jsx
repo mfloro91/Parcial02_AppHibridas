@@ -50,6 +50,7 @@ const FormLogin = () => {
             name: "email",
             type: "email",
             placeholder: "Correo electrónico",
+            errorMessage: "El correo electrónico no es válido.",
             label: "Correo electrónico",
             required: true
         },
@@ -58,7 +59,9 @@ const FormLogin = () => {
             name: "password",
             type: "password",
             placeholder: "Contraseña",
+            errorMessage: "La contraseña debe tener al menos 6 caracteres.",
             label: "Contraseña",
+            pattern: ".{6,}",
             required: true
         }
     ];
@@ -68,7 +71,7 @@ const FormLogin = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mt-5">
 
             {inputs.map((input) => (
                 <FormInput key={input.id} value={formData[input.name]} handleOnChange={handleOnChange} {...input} />

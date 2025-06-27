@@ -24,6 +24,7 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             placeholder: "Nombre",
             errorMessage: "El nombre debe tener al menos 3 caracteres.",
             label: "Nombre",
+            pattern: "^[A-Za-z]{3,}$",
             required: true
         },
         {
@@ -32,13 +33,15 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             type: "text",
             placeholder: "Logo",
             label: "Logo del hotel",
-            required: true
+            required: false
         },
         {
             id: 3,
             name: "description",
             type: "text",
             placeholder: "Descripción del hotel",
+            errorMessage: "La descripción debe tener al menos 3 caracteres.",
+            pattern: ".{3,}",
             label: "Descripción",
             required: true
         },
@@ -47,6 +50,7 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             name: "languages",
             type: "text",
             placeholder: "Lenguajes (separados por comas)",
+            errorMessage: "Debés escribir al menos un lenguaje.",
             label: "Lenguajes",
             required: true
         },
@@ -55,6 +59,8 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             name: "country",
             type: "text",
             placeholder: "País",
+            errorMessage: "El país debe tener al menos 2 caracteres.",
+            pattern: ".{2,}",
             label: "País",
             required: true
         },
@@ -62,6 +68,8 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             id: 6,
             name: "city",
             type: "text",
+            errorMessage: "La ciudad debe tener al menos 2 caracteres.",
+            pattern: ".{2,}",
             placeholder: "Ciudad",
             label: "Ciudad",
             required: true
@@ -69,7 +77,7 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
     ];
 
     return (
-        <form onSubmit={(e) => handleSubmit(e, formData)}>
+        <form onSubmit={(e) => handleSubmit(e, formData)} className="mt-5">
 
             {inputs.map((input) => (
                 <FormInput key={input.id} value={formData[input.name]} handleOnChange={handleOnChange} {...input} />

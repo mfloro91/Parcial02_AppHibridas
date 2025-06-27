@@ -104,7 +104,7 @@ const FormRegister = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mt-5">
 
             {inputs.map((input) => (
                 <FormInput key={input.id} value={formData[input.name]} handleOnChange={handleOnChange} {...input} />

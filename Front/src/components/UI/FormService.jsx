@@ -21,13 +21,16 @@ const FormService = ({ initialData, isEditing, handleSubmit }) => {
             placeholder: "Título del servicio",
             errorMessage: "El título debe tener al menos 3 caracteres.",
             label: "Título",
+            pattern: "^[A-Za-z]{3,}$",
             required: true
         },
         {
             id: 2,
             name: "description",
             type: "text",
+            errorMessage: "La descripción debe tener al menos 3 caracteres.",
             placeholder: "Descripción del servicio",
+            pattern: ".{3,}",
             label: "Descripción",
             required: true
         },
@@ -35,8 +38,10 @@ const FormService = ({ initialData, isEditing, handleSubmit }) => {
             id: 3,
             name: "availableHours",
             type: "text",
-            placeholder: "Horas disponibles (ej. 9-18)",
+            placeholder: "Horas disponibles (ej. 10:00 - 18:00)",
             label: "Horas disponibles",
+            pattern: "^(?:[01][0-9]|2[0-3]):[0-5][0-9] - (?:[01][0-9]|2[0-3]):[0-5][0-9]$",
+            errorMessage: "El formato debe ser 'HH:MM - HH:MM' (ej. 10:00 - 18:00).",
             required: true
         },
     ];
@@ -44,7 +49,7 @@ const FormService = ({ initialData, isEditing, handleSubmit }) => {
 
     return (
 
-        <form onSubmit={(e) => handleSubmit(e, formData)}>
+        <form onSubmit={(e) => handleSubmit(e, formData)} className="mt-5">
 
             {inputs.map((input) => (
                 <FormInput key={input.id} value={formData[input.name]} handleOnChange={handleOnChange} {...input} />
