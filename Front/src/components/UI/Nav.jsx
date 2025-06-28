@@ -22,10 +22,12 @@ const Navbar = () => {
         navigate("/login");
     };
 
-    const handleSearchSubmit = (e) => {
+    const handleSearchSubmit = async (e) => {
         e.preventDefault();
-        alert(`Buscando: ${search}`);
+        navigate('/hotels', { state: { searchText: search } });
+
     };
+
 
     return (
         <nav className="d-flex justify-content-between align-items-center p-3">

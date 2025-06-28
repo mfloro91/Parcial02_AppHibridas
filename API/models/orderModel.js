@@ -1,4 +1,4 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import hotelModel from "./hotelModel.js";
 import serviceModel from "./serviceModel.js";
 
@@ -14,8 +14,9 @@ const orderSchema = new mongoose.Schema(
       ref: 'Service',
       required: true,
     },
-    room_number: {
-      type: Number,
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     note: {

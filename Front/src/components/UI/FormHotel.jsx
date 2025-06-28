@@ -24,7 +24,7 @@ const FormHotel = ({ initialData, isEditing, handleSubmit }) => {
             placeholder: "Nombre",
             errorMessage: "El nombre debe tener al menos 3 caracteres.",
             label: "Nombre",
-            pattern: "^[A-Za-z]{3,}$",
+            pattern: ".{3,}",
             required: true
         },
         {

@@ -64,7 +64,7 @@ function Users() {
                         key={user._id}
                         title={user.name}
                         description={user.email}
-                        cta="Editar rol"
+                        cta="Ver más"
                     >
                         <p>Rol:</p>
 

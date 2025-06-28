@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button } from '../../routes/UiComponents'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Hotels() {
 
     const [hotels, setHotels] = useState([])
+
+    const location = useLocation();
+    const searchText = location.state?.searchText || "";
 
     const navigate = useNavigate()
     const goCreateHotel = () => {
@@ -21,8 +24,15 @@ function Hotels() {
             return;
         }
 
-        fetchHotels(token);
-    }, []);
+        console.log("Texto recibido:", searchText);
+
+        if (searchText !== "") {
+            fetchFilteredHotels(token, searchText);
+        } else {
+            fetchHotels(token); //
+        }
+
+    }, [searchText]);
 
     // Enpoint: GET HOTELS ALL
     const fetchHotels = async (token) => {
@@ -38,12 +48,41 @@ function Hotels() {
         }
     }
 
+    //Enpoint: GET HOTELS/SEARCH
+
+    const fetchFilteredHotels = async (token, text) => {
+        try {
+            const res = await axios.get("http://localhost:3000/hotels/search", {
+                params: { search: text },
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setHotels(res.data);
+        } catch (err) {
+            console.error("Error al buscar hoteles:", err);
+        }
+    };
+
+
     return (
         <div>
             <h2>Hoteles</h2>
             <p>Estos son algunos de los hoteles que están usando nuestra app.</p>
 
+
+            {searchText !== "" && (
+                <div className="my-3">
+                    <p>Mostrando resultados para: <strong>{searchText}</strong></p>
+                    <Button
+                        text="Ver todos los hoteles"
+                        variant="primary"
+                        onClick={() => navigate('/hotels')}
+                    />
+                </div>
+            )}
+
             <Button text="Crear nuevo hotel" variant="success" onClick={goCreateHotel}> </Button>
+
+
 
             <div className="d-flex flex-wrap justify-content-center align-items-center mt-3">
                 {hotels.map((hotel) => (

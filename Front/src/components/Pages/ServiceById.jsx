@@ -65,6 +65,24 @@ function ServiceById() {
         }
     }
 
+    //Enpoint: reservar servicio
+    const reservarServicio = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const res = await axios.post('http://localhost:3000/orders', {
+                service_id: service._id,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            alert("¡Servicio reservado con éxito!");
+        } catch (err) {
+            alert("No se pudo reservar el servicio");
+        }
+    };
+
+
     return (
         < div >
             <h2> {service.title} </h2>
@@ -79,6 +97,12 @@ function ServiceById() {
                 <>
                     <Button text="Editar Servicio" variant="warning" onClick={() => navigate(`/services/editservice/${id}`)}> </Button>
                     <Button text="Eliminar servicio" variant="danger" onClick={handleDelete}> </Button>
+                </>
+            )}
+
+            {["user"].includes(role) && (
+                <>
+                    <Button text="Reservar" variant="primary" onClick={reservarServicio} />
                 </>
             )}
 
