@@ -47,3 +47,21 @@ label {
   margin-top: 20px;
 }
 
+.fondo {
+    background-color: #f8f5f5fb;
+    border-radius: 12px;
+    padding: 1em;
+    margin-top: 1em;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
