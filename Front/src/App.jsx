@@ -14,32 +14,34 @@ function App() {
 
 
   return (
-    <>
+    <div className="app-container">
+
 
 
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
 
-        <Route path="/paneladmin" element={<PanelAdmin />} />
-        <Route path="/services/*" element={<ServiceRoutes />} />
-        <Route path="/hotels/*" element={<HotelRoutes />} />
+          <Route path="/paneladmin" element={<PanelAdmin />} />
+          <Route path="/services/*" element={<ServiceRoutes />} />
+          <Route path="/hotels/*" element={<HotelRoutes />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/users" element={<Users />} />
-        
-        <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/users" element={<Users />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes >
+          <Route path="/orders" element={<Orders />} />
 
+          <Route path="*" element={<NotFound />} />
+        </Routes >
+      </main>
       <Footer />
 
+    </div>
 
-    </>
   )
 }
 

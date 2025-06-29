@@ -53,7 +53,7 @@ function Services() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h2 className="mb-3">Servicios</h2>
 
             {["superadmin", "admin", "staff"].includes(role) && (

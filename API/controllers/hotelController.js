@@ -47,7 +47,7 @@ export const editHotel = async (req, res) => {
     
     //Si sos administrador, solo podes editar el hotel que te corresponde
     if (role === 'admin') {
-        if (hotel_id !== req.params.id) {
+        if (hotel_id._id !== req.params.id) {
             return res.status(403).json({error: 'No tienes permiso para editar este hotel'});
         }
     }

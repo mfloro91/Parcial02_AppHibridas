@@ -43,6 +43,7 @@ function EditService() {
     e.preventDefault();
 
     try {
+      const token = localStorage.getItem("token");
       const res = await axios.put(`http://localhost:3000/services/${id}`, updatedData, {
         headers: { Authorization: `Bearer ${token}` }
       });

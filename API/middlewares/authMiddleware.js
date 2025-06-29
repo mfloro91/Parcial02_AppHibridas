@@ -23,6 +23,7 @@ export const authenticateJWT = (req, res, next) => {
             console.log(payload);
             next()
         })
+        
     } else {
         res.sendStatus(401)
     }

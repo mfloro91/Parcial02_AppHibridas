@@ -15,7 +15,7 @@ input {
 span {
   font-size: 1.2rem;
   color: #888;
-  display:none;
+  display: none;
 }
 
 input[focused="true"]:valid {
@@ -26,19 +26,19 @@ input[focused="true"]:invalid {
   border: 2px solid red;
 }
 
-input[focused="true"]:invalid ~ span {
+input[focused="true"]:invalid~span {
   display: block;
 }
 
 nav {
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    background-color: white; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 label {
@@ -48,20 +48,9 @@ label {
 }
 
 .fondo {
-    background-color: #f8f5f5fb;
-    border-radius: 12px;
-    padding: 1em;
-    margin-top: 1em;
+  background-color: #f8f5f5fb;
+  border-radius: 12px;
+  padding: 1em;
+  margin-top: 1em;
 }
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-
 
